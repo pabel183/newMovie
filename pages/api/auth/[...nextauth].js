@@ -3,10 +3,21 @@ import { compare } from "bcrypt";
 import Credentials from "next-auth/providers/credentials";
 import prismadb from "@/lib/prismadb";
 import { PrismaAdapter } from "@auth/prisma-adapter";
+import GitHubProvider from "next-auth/providers/github";
+// import GoogleProvider from "next-auth/providers/GoogleProvider";
+
 
 export default NextAuth({
     adapter: PrismaAdapter(prismadb),
     providers:[
+        GitHubProvider({
+            clientId: process.env.GITHUB_ID,
+            clientSecret: process.env.GITHUB_SECRET
+        }),
+        // GoogleProvider({
+        //     clientId: process.env.GOOGLE_CLIENT_ID,
+        //     clientSecret: process.env.GOOGLE_CLIENT_SECRET
+        // }),
         Credentials({
             id:"credentials",
             name:"credentials",
