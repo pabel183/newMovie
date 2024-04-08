@@ -30,7 +30,7 @@ export default async function handler(
                 name,
                 hashedPassword,
                 image:"",
-                emailVerifiel:new Date(),
+                emailVerified:new Date(),
             }
         })
 

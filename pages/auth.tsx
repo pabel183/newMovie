@@ -1,15 +1,13 @@
-import { useCallback, useReducer, useState } from "react";
+import { useCallback, useState } from "react";
 import axios from "axios";
 
 import Input from "@/components/Input";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
 
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
 const Auth = () => {
-    const router=useRouter();
 
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
@@ -25,10 +23,8 @@ const Auth = () => {
         await signIn("credentials",{
             email,
             password,
-            redirect:false,
-            callbackUrl:"/",
+            callbackUrl:"/profile",
         });
-        router.push("/");
     },[email,password]);
 
     const register=useCallback(async ()=>{
@@ -126,7 +122,9 @@ const Auth = () => {
                         mt-8
                         justify-center
                         ">
-                            <div className="
+                            <div 
+                            onClick={()=>signIn("google",{callbackUrl:"/profile"})}
+                            className="
                             w-10
                             h-10
                             bg-white
@@ -141,7 +139,7 @@ const Auth = () => {
                                 <FcGoogle size={30}/>
                             </div>
                             <div
-                            onClick={()=>signIn("github",{callbackUrl:"/"})}
+                            onClick={()=>signIn("github",{callbackUrl:"/profile"})}
                             className="
                             w-10
                             h-10
