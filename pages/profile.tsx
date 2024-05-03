@@ -16,7 +16,8 @@ export async function getServerSideProps(context:NextPageContext){
             }
         }
     }
-
+    console.log("profile session");
+    console.log(session);
     return {
         props:{}
     }

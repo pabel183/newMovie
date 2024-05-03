@@ -23,7 +23,8 @@ export async function getServerSideProps(context: NextPageContext){
       }
     }
   }
-
+  console.log("index session");
+  console.log(session);
   return {
     props: {}
   }
